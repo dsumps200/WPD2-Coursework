@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Milestone Planner</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <p class="lead">Details here</p>
+    <ul>
+    {{#milestones}}
+    <li>{{description}}: {{intendedDueDate}}</li>
+    {{/milestones}}
+    </ul>
+</div>
+</body>
+</html>
