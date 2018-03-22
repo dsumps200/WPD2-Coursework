@@ -40,7 +40,6 @@ public class Milestone {
         this.title = title;
     }
 
-
     public String getDescription() {
         return description;
     }
