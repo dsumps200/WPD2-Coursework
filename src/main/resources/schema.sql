@@ -1,0 +1,7 @@
+CREATE TABLE MILESTONE (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(32) NOT NULL,
+  description VARCHAR(128) NOT NULL,
+  due_date DATE NOT NULL,
+  completion_date DATE,
+);

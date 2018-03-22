@@ -5,19 +5,24 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table
+@Table(name="MILESTONE")
 public class Milestone {
 
     @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+    @GeneratedValue
     private int id;
 
-    @Column
+    @Column(name="title")
+    private String title;
+
+    @Column(name="description")
     private String description;
-    @Column
+
+    @Column(name="due_date")
     private LocalDateTime intendedDueDate;
-    @Column
+
+    @Column(name="completion_date")
     private LocalDateTime actualCompletionDate;
 
     public Milestone() { super(); }
@@ -26,6 +31,15 @@ public class Milestone {
         this.description = description;
         this.intendedDueDate = dueDate;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
 
     public String getDescription() {
         return description;
