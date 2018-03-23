@@ -21,6 +21,7 @@ public class MilestoneController {
     @GetMapping
     public String getAllMilestones(Model model) {
         model.addAttribute("milestones", this.milestoneService.getAllMilestones());
+
         return "milestones";
     }
 
