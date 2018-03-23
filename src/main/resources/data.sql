@@ -1,5 +1,5 @@
-INSERT INTO MILESTONE (title, description, due_date) VALUES ('Milestone 1', 'Initial milestone', CURRENT_TIMESTAMP());
-INSERT INTO MILESTONE (title, description, due_date) VALUES ('Milestone 2', 'Second milestone', CURRENT_TIMESTAMP());
-INSERT INTO MILESTONE (title, description, due_date) VALUES ('Milestone 3', 'Third milestone', CURRENT_TIMESTAMP());
-INSERT INTO MILESTONE (title, description, due_date) VALUES ('Milestone 4', 'Fourth milestone', CURRENT_TIMESTAMP());
-INSERT INTO MILESTONE (title, description, due_date) VALUES ('Milestone 5', 'Fifth milestone', CURRENT_TIMESTAMP());
+INSERT INTO MILESTONE (title, description, due_date) VALUES ('Presentation', 'Create web development presentation', CURRENT_TIMESTAMP());
+INSERT INTO MILESTONE (title, description, due_date) VALUES ('Create unit tests', 'Create unit tests for the application', CURRENT_TIMESTAMP());
+INSERT INTO MILESTONE (title, description, due_date) VALUES ('Wireframes', 'Craft a beautiful set of wireframes', CURRENT_TIMESTAMP());
+INSERT INTO MILESTONE (title, description, due_date) VALUES ('User Authentication', 'Create a register and login system', CURRENT_TIMESTAMP());
+INSERT INTO MILESTONE (title, description, due_date) VALUES ('Database relationships', 'Associate a user with the milestones they create', CURRENT_TIMESTAMP());

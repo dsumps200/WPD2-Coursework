@@ -7,12 +7,16 @@
 </head>
 <body>
 <div class="container">
-    <p class="lead">Milestone List</p>
-    <ul>
-    {{#milestones}}
-    <li>{{description}}: {{intendedDueDate}}</li>
-    {{/milestones}}
-    </ul>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h2 class="lead text-center mt-3 mb-4">Milestone List</h2>
+            <ul class="list-group">
+                {{#milestones}}
+                    <li class="list-group-item list-group-item-action"><strong>{{title}}</strong>: {{description}}: <em class="float-right">{{intendedDueDate}}</em></li>
+                {{/milestones}}
+            </ul>
+        </div>
+    </div>
 </div>
 </body>
 </html>

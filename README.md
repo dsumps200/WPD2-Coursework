@@ -16,5 +16,8 @@ Once Maven is installed and on the PATH, simply type
     
 The first time you do this may be time-consuming, because Maven will need to do the initial install of any dependencies that the application has. Future runs will be quicker.
 
+If successful, open a web browser and navigate to `http://localhost:8000` to see the homepage.
+
+
 [2]:http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 [3]:https://maven.apache.org/download.cgi
