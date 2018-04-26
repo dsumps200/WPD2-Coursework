@@ -1,7 +1,21 @@
+body {
+    min-height: 100vh;
+}
 header {
     background: lightgray;
 }
 
 #brand {
     font-size: 32px;
+}
+
+.footer {
+    height: 45px;
+    border-top: 2px solid mediumaquamarine;
+}
+.footer-p-custom {
+    color: grey;
+    font-size: 11px;
+    line-height: 15px;
+    padding-top: 8px;
 }
