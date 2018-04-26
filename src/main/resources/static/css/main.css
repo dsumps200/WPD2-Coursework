@@ -1,3 +1,7 @@
-#header {
+header {
+    background: lightgray;
+}
+
+#brand {
     font-size: 32px;
 }
