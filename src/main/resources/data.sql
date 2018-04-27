@@ -1,4 +1,4 @@
-INSERT INTO MILESTONE (title, description, due_date) VALUES ('Presentation', 'Create web development presentation', CURRENT_DATE());
+INSERT INTO MILESTONE (title, description, due_date, completion_date) VALUES ('Presentation', 'Create web development presentation', CURRENT_DATE(), CURRENT_DATE());
 INSERT INTO MILESTONE (title, description, due_date) VALUES ('Create unit tests', 'Create unit tests for the application', CURRENT_DATE());
 INSERT INTO MILESTONE (title, description, due_date) VALUES ('Wireframes', 'Craft a beautiful set of wireframes', CURRENT_DATE());
 INSERT INTO MILESTONE (title, description, due_date) VALUES ('User Authentication', 'Create a register and login system', CURRENT_DATE());

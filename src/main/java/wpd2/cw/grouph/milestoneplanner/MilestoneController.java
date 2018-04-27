@@ -82,6 +82,13 @@ public class MilestoneController {
         if (milestone.isPresent()) {
             Milestone m = milestone.get();
             model.addAttribute("milestone", m);
+            Boolean hasActualCompletion;
+            if (m.getActualCompletionDate() == null) {
+                hasActualCompletion = false;
+            } else {
+                hasActualCompletion = true;
+            }
+            model.addAttribute("hasCompletionDate", hasActualCompletion);
             return "individual_milestone";
         }
 

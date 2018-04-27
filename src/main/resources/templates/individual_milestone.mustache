@@ -1,12 +1,80 @@
 {{>header}}
 <div class="container col-8 offset-2">
-    <h4 class="text-success mb-2 font-weight-bold">{{milestone.title}}</h4>
-    <hr/>
-    <div class="body-content">
-        <p>This milestone has the title, {{milestone.title}}</p>
-        <p>Description: {{milestone.description}}</p>
-        <p>Intended due date: {{ milestone.intendedDueDate }}</p>
-    </div>
 
+    <div class="main-content mb-3 border-bottom">
+        <div class="d-flex justify-content-between">
+            <h4 class="text-success mb-0 font-weight-bold">{{milestone.title}}</h4>
+            <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#edit-title-modal">
+                Edit milestone
+            </button>
+        </div>
+        <hr/>
+        <div class="body-content">
+            <p>This milestone has the title, {{milestone.title}}</p>
+            <p>Description: {{milestone.description}}</p>
+            <p>Intended due date: {{ milestone.intendedDueDate }}</p>
+        </div>
+    </div>
+    <p>Click <a href="/milestones">here</a> to return to the milestone list.</p>
+</div>
+
+<!-- Edit Milestone Modal -->
+<div class="modal" id="edit-title-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Milestone</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="edit-milestone-form" method="POST" action="/milestones/edit">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input name="title" id="title" type="text"
+                               class="form-control" data-title="{{milestone.title}}" required />
+                        <span class="text-danger errors mt-2"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea name="description" id="description"
+                                  data-description="{{milestone.description}}" class="form-control" required></textarea>
+                        <span class="text-danger errors mt-2"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="intended-date">Intended due date</label>
+                        <input name="intended-date" id="intended-date" type="text"
+                               data-intended="{{milestone.intendedDueDate}}" class="form-control" required/>
+                        <span class="text-danger errors"></span>
+                    </div>
+
+                    {{#hasCompletionDate}}
+                        <div class="form-group">
+                            <label for="actual-date">Actual completion date</label>
+                            <input name="actual-date" id="actual-date" type="text"
+                                   data-actual="{{milestone.actualCompletionDate}}" class="form-control" required/>
+                            <span class="text-danger errors"></span>
+                        </div>
+                    {{/hasCompletionDate}}
+
+                    {{^hasCompletionDate}}
+                        <div class="form-group">
+                            <label for="actual-date">Set completion date (optional)</label>
+                            <input name="actual-date" id="actual-date" type="text"
+                                   class="form-control" required/>
+                            <span class="text-danger errors"></span>
+                        </div>
+                    {{/hasCompletionDate}}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 {{>footer}}
