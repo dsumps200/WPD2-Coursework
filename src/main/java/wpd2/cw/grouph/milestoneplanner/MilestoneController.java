@@ -16,9 +16,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequestMapping("/milestones")
@@ -129,5 +127,18 @@ public class MilestoneController {
             milestoneRepository.save(m);
         }
         return "redirect:/milestones/{id}";
+    }
+
+    @DeleteMapping("/{id}/delete")
+    @ResponseBody
+    public Map<String, Boolean> deleteMilestone(@PathVariable Long id) {
+        Optional<Milestone> milestone = milestoneRepository.findById(id);
+        if (milestone.isPresent()) {
+            Milestone m = milestone.get();
+            milestoneRepository.delete(m);
+            return Collections.singletonMap("success", true);
+        } else {
+            return Collections.singletonMap("success", false);
+        }
     }
 }

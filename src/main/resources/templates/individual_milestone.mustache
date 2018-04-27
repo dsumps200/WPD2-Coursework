@@ -41,7 +41,7 @@
             </div>
             <div class="modal-body">
                 <form id="edit-milestone-form" method="post" action="/milestones/{{milestone.id}}/edit">
-                    <input type="hidden" name="id" id="id" value="{{milestone.id}}"/>
+                    <input type="hidden" name="id" id="milestone-id" value="{{milestone.id}}"/>
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input name="title" id="title" type="text"
@@ -103,7 +103,7 @@
                 <p>Are you sure you wish to delete Milestone, '{{milestone.title}}?</p>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Confirm</button>
+                <button type="submit" class="btn btn-primary" id="confirm-delete">Confirm</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             </div>
         </div>
