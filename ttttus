@@ -1,0 +1,78 @@
+[33mcommit 04663f89f2dfba5ccd17e5cffe846a2ccd397d76[m[33m ([m[1;36mHEAD -> [m[1;32mauthentication_setup[m[33m, [m[1;31morigin/authentication_setup[m[33m)[m
+Author: endless-summer <lylesimpson89@gmail.com>
+Date:   Thu Apr 26 19:37:15 2018 +0100
+
+    Added footer
+
+[33mcommit 0b6818892b533d78d250408d9d2db99eaafb242c[m
+Author: endless-summer <lylesimpson89@gmail.com>
+Date:   Thu Apr 26 17:19:58 2018 +0100
+
+    User model added, and database schema updated
+
+[33mcommit 397f39bb7df3bf01e6a9997f0dc665d3e28d0586[m
+Author: endless-summer <lylesimpson89@gmail.com>
+Date:   Thu Apr 26 16:56:18 2018 +0100
+
+    Header/footer, login and register Mustache files added. Authentication config set up
+
+[33mcommit 09fdc225837ea18c9019b86a18fcc9316369ab3c[m[33m ([m[1;31morigin/unit_tests[m[33m, [m[1;31morigin/front_end_templates[m[33m, [m[1;32munit_tests[m[33m, [m[1;32mfront_end_templates[m[33m)[m
+Author: endless-summer <lylesimpson89@gmail.com>
+Date:   Fri Mar 23 12:16:38 2018 +0000
+
+    Basic HTML header added to landing page
+
+[33mcommit a833adf0f33f792c5f0b4c506ccdfab30f503b36[m
+Author: endless-summer <lylesimpson89@gmail.com>
+Date:   Fri Mar 23 11:57:08 2018 +0000
+
+    Added Bootstrap styles
+
+[33mcommit 623ebe0b72676d3f379373cc0e06b17e0e888e63[m
+Author: endless-summer <lylesimpson89@gmail.com>
+Date:   Fri Mar 23 10:37:30 2018 +0000
+
+    Style changes
+
+[33mcommit 253efa5dd3ea2456af01075181ddeca05596e6c4[m
+Author: endless-summer <lylesimpson89@gmail.com>
+Date:   Fri Mar 23 10:09:29 2018 +0000
+
+    README updated
+
+[33mcommit e755f23789babcc89a45a95f0c7bf18bb4efc8d8[m
+Author: endless-summer <lylesimpson89@gmail.com>
+Date:   Thu Mar 22 20:45:40 2018 +0000
+
+    Added explanatory comments
+
+[33mcommit bc9513581b74c4bdb3f63e5edfbd458bf1efe370[m
+Author: endless-summer <lylesimpson89@gmail.com>
+Date:   Thu Mar 22 20:41:33 2018 +0000
+
+    Removed imports that weren't required
+
+[33mcommit f32b9839da25eb3f76140500ac8b18d1992b95a9[m
+Author: endless-summer <lylesimpson89@gmail.com>
+Date:   Thu Mar 22 20:39:30 2018 +0000
+
+    H2 database added, and SQL schema and insert scripts added
+
+[33mcommit 607b0223251e04028527f73309ff543a595177f5[m
+Merge: 8dcc113 921c29c
+Author: endless-summer <lylesimpson89@gmail.com>
+Date:   Tue Mar 20 11:56:21 2018 +0000
+
+    Merge branch 'master' of https://bitbucket.org/ls204/wpd2-coursework
+
+[33mcommit 8dcc113841777bcdbe321e70e944d287164357e2[m
+Author: endless-summer <lylesimpson89@gmail.com>
+Date:   Tue Mar 20 11:54:25 2018 +0000
+
+    Initial commit
+
+[33mcommit 921c29c99aa294c29e073cd69b6b2f27cffc96a2[m
+Author: Lyle Simpson <lsimps204@caledonian.ac.uk>
+Date:   Mon Mar 19 14:25:51 2018 +0000
+
+    Initial commit

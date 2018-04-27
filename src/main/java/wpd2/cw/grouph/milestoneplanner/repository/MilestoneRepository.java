@@ -1,4 +1,4 @@
-package wpd2.cw.grouph.milestoneplanner;
+package wpd2.cw.grouph.milestoneplanner.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

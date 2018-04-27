@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Milestone Planner</title>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/main.css"/>
-</head>
-<body>
-<div class="container">
-    <header class="mb-4 mt-1">
-        <div class="nav float-right mb-4 mt-2">
-            <a href="#" class="px-2">Login</a>
-            <a href="#" class="px-2">Register</a>
-        </div>
-        <h1 class="h1 lead pl-2" id="header">Milestone Planner</h1>
-    </header>
+{{>header}}
     <div class="row">
         <div class="col-8 offset-2">
             <div class="card mt-3">
@@ -25,7 +9,8 @@
                     <ul class="list-group">
                         {{#milestones}}
                             <li class="list-group-item list-group-item-action">
-                                <strong>{{title}}</strong>: {{description}}: <em class="float-right">{{intendedDueDate}}</em>
+                                <strong>{{title}}</strong>:
+                                {{description}}: <em class="float-right">{{intendedDueDate}}</em>
                             </li>
                         {{/milestones}}
                     </ul>
@@ -33,6 +18,4 @@
             </div>
         </div>
     </div>
-</div>
-</body>
-</html>
+{{>footer}}

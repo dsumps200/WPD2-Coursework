@@ -1,6 +1,7 @@
-package wpd2.cw.grouph.milestoneplanner;
+package wpd2.cw.grouph.milestoneplanner.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import wpd2.cw.grouph.milestoneplanner.repository.MilestoneRepository;
 import wpd2.cw.grouph.milestoneplanner.models.Milestone;
 
 import java.util.ArrayList;
