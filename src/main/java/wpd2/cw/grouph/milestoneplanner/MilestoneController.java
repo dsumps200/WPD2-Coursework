@@ -4,11 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import wpd2.cw.grouph.milestoneplanner.models.Milestone;
 import wpd2.cw.grouph.milestoneplanner.services.MilestoneService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/milestones")
 public class MilestoneController {
 
     private MilestoneService milestoneService;
@@ -28,4 +31,15 @@ public class MilestoneController {
 
 
     /* Post, Put and Delete mappings will go below */
+    /* Shows the form for creating a milestone */
+    @GetMapping("/create")
+    public String createMilestone(Model model) {
+        model.addAttribute("milestone", new Milestone());
+        return "create-milestone";
+    }
+
+    @PostMapping("/create")
+    public String create(@ModelAttribute Milestone milestone) {
+        return "index";
+    }
 }

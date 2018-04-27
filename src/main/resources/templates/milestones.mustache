@@ -1,21 +1,14 @@
 {{>header}}
-    <div class="row">
-        <div class="col-8 offset-2">
-            <div class="card mt-3">
-                <div class="card-header bg-primary">
-                    <h2 class="h2 mb-2 float-left">Milestone List</h2>
-                </div>
-                <div class="card-body">
-                    <ul class="list-group">
-                        {{#milestones}}
-                            <li class="list-group-item list-group-item-action">
-                                <strong>{{title}}</strong>:
-                                {{description}}: <em class="float-right">{{intendedDueDate}}</em>
-                            </li>
-                        {{/milestones}}
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <div class="container col-8 offset-2">
+        <h4 class="text-success font-weight-bold mb-2">Milestone List</h4>
+        <hr/>
+        <ul class="list-group">
+            {{#milestones}}
+                <li class="list-group-item list-group-item-action">
+                    <strong>{{title}}</strong>: {{description}}:
+                    <em class="float-right">{{intendedDueDate}}</em>
+                </li>
+            {{/milestones}}
+        </ul>
     </div>
 {{>footer}}

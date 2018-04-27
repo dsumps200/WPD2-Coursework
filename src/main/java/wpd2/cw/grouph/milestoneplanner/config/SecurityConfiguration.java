@@ -24,7 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         /* Allow access to the root URL ("/"), but force authentication for others */
-        http.authorizeRequests().antMatchers("/", "/register", "/css/*", "/js/*", "/img/*").permitAll()
+        http.csrf().disable().authorizeRequests().antMatchers("/", "/milestones", "/milestones/*", "/register", "/css/*", "/js/*", "/img/*").permitAll()
             .anyRequest().authenticated()
             .and()
             .formLogin()
@@ -41,11 +41,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .passwordEncoder(passwordEncoder())
-//                .withUser("user").password(ENCODED_PASSWORD).roles("USER");
-//    }
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .passwordEncoder(passwordEncoder())
+                .withUser("user").password("secret123").roles("USER");
+    }
 }
 

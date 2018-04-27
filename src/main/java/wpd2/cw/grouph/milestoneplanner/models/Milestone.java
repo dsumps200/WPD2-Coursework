@@ -27,7 +27,8 @@ public class Milestone {
 
     public Milestone() { super(); }
 
-    public Milestone(String description, LocalDateTime dueDate) {
+    public Milestone(String title, String description, LocalDateTime dueDate) {
+        this.title = title;
         this.description = description;
         this.intendedDueDate = dueDate;
     }
