@@ -7,17 +7,17 @@
     <form method="POST" action="/milestones/create">
         <div class="form-group">
             <label for="title">Title</label>
-            <input name="title" id="title" type="text" class="form-control"/>
+            <input name="title" id="title" type="text" class="form-control" required/>
         </div>
 
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea name="description" id="description" type="text" class="form-control"></textarea>
+            <textarea name="description" id="description" type="text" class="form-control" required></textarea>
         </div>
 
         <div class="form-group">
             <label for="intended-date">Intended due date</label>
-            <input name="intended-date" id="intended-date" type="text" class="form-control"/>
+            <input name="intended-date" id="intended-date" type="text" class="form-control" required/>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
