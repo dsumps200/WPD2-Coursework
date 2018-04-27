@@ -105,10 +105,8 @@ public class MilestoneController {
         Optional<Milestone> milestone = milestoneRepository.findById(id);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate intended;
+        LocalDate intended = LocalDate.parse(intendedDueDate, formatter);
         LocalDate actual;
-
-        intended = LocalDate.parse(intendedDueDate, formatter);
 
         if (!actualCompletionDate.equals("")) {
             actual = LocalDate.parse(actualCompletionDate, formatter);
@@ -129,6 +127,7 @@ public class MilestoneController {
         return "redirect:/milestones/{id}";
     }
 
+    /* Deletes a Milestone, and returns JSON response indicating if the delete was successful or not */
     @DeleteMapping("/{id}/delete")
     @ResponseBody
     public Map<String, Boolean> deleteMilestone(@PathVariable Long id) {
