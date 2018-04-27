@@ -5,7 +5,10 @@
         <ul class="list-group">
             {{#milestones}}
                 <li class="list-group-item list-group-item-action">
-                    <strong>{{title}}</strong>: {{description}}:
+                    <a href="/milestones/{{id}}">
+                        <strong>{{title}}</strong>
+                    </a>
+                    : {{description}}
                     <em class="float-right">{{intendedDueDate}}</em>
                 </li>
             {{/milestones}}

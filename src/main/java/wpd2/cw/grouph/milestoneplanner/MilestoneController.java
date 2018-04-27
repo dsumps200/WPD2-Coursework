@@ -12,9 +12,13 @@ import wpd2.cw.grouph.milestoneplanner.services.MilestoneService;
 import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/milestones")
@@ -34,8 +38,13 @@ public class MilestoneController {
 
     @GetMapping
     public String getAllMilestones(Model model) {
-        model.addAttribute("milestones", this.milestoneService.getAllMilestones());
+        List<Milestone> milestones = this.milestoneService.getAllMilestones();
 
+        /* Convert dates to human-readable */
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//        milestones.forEach(milestone -> milestone.setIntendedDueDate(convertToDateViaSqlTimestamp()));
+
+        model.addAttribute("milestones", milestones);
         return "milestones";
     }
 
@@ -64,5 +73,24 @@ public class MilestoneController {
 
         milestoneRepository.save(new Milestone(title, description, intended));
         return new ModelAndView("redirect:/milestones");
+    }
+
+    @GetMapping("/{id}")
+    public String individual_milestone(Model model, @PathVariable Long id) {
+        Optional<Milestone> milestone = milestoneRepository.findById(id);
+
+        if (milestone.isPresent()) {
+            Milestone m = milestone.get();
+            model.addAttribute("milestone", m);
+            return "individual_milestone";
+        }
+
+        return "redirect:/milestones";
+    }
+
+
+    /* Helpers */
+    public Date convertToDateViaSqlTimestamp(LocalDateTime dateToConvert) {
+        return java.sql.Timestamp.valueOf(dateToConvert);
     }
 }
