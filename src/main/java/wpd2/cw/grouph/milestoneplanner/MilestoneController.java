@@ -63,7 +63,7 @@ public class MilestoneController {
                          @RequestParam("description") String description,
                          @RequestParam("intended-date") String intendedDueDate) {
         // Convert intendedDueDate to Date object
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate intended;
         try {
             intended = LocalDate.parse(intendedDueDate, formatter);
@@ -93,5 +93,38 @@ public class MilestoneController {
         }
 
         return "redirect:/milestones";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String edit_milestone(@PathVariable Long id,
+                                 @RequestParam("title") String title,
+                                 @RequestParam("description") String description,
+                                 @RequestParam("intended-date") String intendedDueDate,
+                                 @RequestParam("actual-date") String actualCompletionDate) {
+        Optional<Milestone> milestone = milestoneRepository.findById(id);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate intended;
+        LocalDate actual;
+
+        intended = LocalDate.parse(intendedDueDate, formatter);
+
+        if (!actualCompletionDate.equals(null)) {
+            actual = LocalDate.parse(intendedDueDate, formatter);
+        } else actual = null;
+
+
+        if (milestone.isPresent()) {
+            Milestone m = milestone.get();
+            m.setTitle(title);
+            m.setDescription(description);
+            m.setIntendedDueDate(intended);
+            if (actual != null) {
+                m.setActualCompletionDate(actual);
+            }
+
+            milestoneRepository.save(m);
+        }
+        return "redirect:/milestones/{id}";
     }
 }

@@ -29,7 +29,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="edit-milestone-form" method="POST" action="/milestones/edit">
+                <form id="edit-milestone-form" method="post" action="/milestones/{{milestone.id}}/edit">
+                    <input type="hidden" name="id" id="id" value="{{milestone.id}}"/>
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input name="title" id="title" type="text"
@@ -68,12 +69,12 @@
                             <span class="text-danger errors"></span>
                         </div>
                     {{/hasCompletionDate}}
-                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
