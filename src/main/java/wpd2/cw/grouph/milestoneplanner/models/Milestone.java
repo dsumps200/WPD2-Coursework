@@ -33,6 +33,12 @@ public class Milestone {
         this.description = description;
         this.intendedDueDate = dueDate;
     }
+    public Milestone(String title, String description, LocalDate dueDate, LocalDate actualDate) {
+        this.title = title;
+        this.description = description;
+        this.intendedDueDate = dueDate;
+        this.actualCompletionDate = actualDate;
+    }
 
     public String getTitle() {
         return title;

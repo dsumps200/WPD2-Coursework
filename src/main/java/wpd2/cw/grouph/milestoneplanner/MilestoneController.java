@@ -61,17 +61,20 @@ public class MilestoneController {
     public String create(HttpServletResponse response,
                          @RequestParam("title") String title,
                          @RequestParam("description") String description,
-                         @RequestParam("intended-date") String intendedDueDate) {
+                         @RequestParam("intended-date") String intendedDueDate,
+                         @RequestParam("actual-date") String actualDate) {
         // Convert intendedDueDate to Date object
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate intended;
-        try {
-            intended = LocalDate.parse(intendedDueDate, formatter);
-        } catch(Exception e) {
-            return "redirect:/milestones/create";
+        LocalDate intended = LocalDate.parse(intendedDueDate, formatter);
+        LocalDate actual;
+
+        if (!actualDate.equals("")) {
+            actual = LocalDate.parse(actualDate, formatter);
+            milestoneRepository.save(new Milestone(title, description, intended, actual));
+        } else {
+            milestoneRepository.save(new Milestone(title, description, intended));
         }
 
-        milestoneRepository.save(new Milestone(title, description, intended));
         return "redirect:/milestones";
     }
 
@@ -109,8 +112,8 @@ public class MilestoneController {
 
         intended = LocalDate.parse(intendedDueDate, formatter);
 
-        if (!actualCompletionDate.equals(null)) {
-            actual = LocalDate.parse(intendedDueDate, formatter);
+        if (!actualCompletionDate.equals("")) {
+            actual = LocalDate.parse(actualCompletionDate, formatter);
         } else actual = null;
 
 

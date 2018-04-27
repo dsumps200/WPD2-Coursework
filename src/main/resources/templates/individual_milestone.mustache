@@ -4,22 +4,33 @@
     <div class="main-content mb-3 border-bottom">
         <div class="d-flex justify-content-between">
             <h4 class="text-success mb-0 font-weight-bold">{{milestone.title}}</h4>
-            <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#edit-title-modal">
-                Edit milestone
-            </button>
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-primary btn-sm mr-1" type="button" data-toggle="modal" data-target="#edit-milestone-modal">
+                    Edit milestone
+                </button>
+                <button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#delete-milestone-modal">
+                    Delete milestone
+                </button>
+            </div>
         </div>
         <hr/>
         <div class="body-content">
             <p>This milestone has the title, {{milestone.title}}</p>
             <p>Description: {{milestone.description}}</p>
             <p>Intended due date: {{ milestone.intendedDueDate }}</p>
+            {{#hasCompletionDate}}
+                <p>Actual due date: {{milestone.actualCompletionDate}}</p>
+            {{/hasCompletionDate}}
+            {{^hasCompletionDate}}
+                <p>No completion date set. Click <a href="#" data-toggle="modal" data-target="#edit-milestone-modal">here</a> to add</p>
+            {{/hasCompletionDate}}
         </div>
     </div>
     <p>Click <a href="/milestones">here</a> to return to the milestone list.</p>
 </div>
 
 <!-- Edit Milestone Modal -->
-<div class="modal" id="edit-title-modal" tabindex="-1" role="dialog">
+<div class="modal" id="edit-milestone-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -56,7 +67,7 @@
                         <div class="form-group">
                             <label for="actual-date">Actual completion date</label>
                             <input name="actual-date" id="actual-date" type="text"
-                                   data-actual="{{milestone.actualCompletionDate}}" class="form-control" required/>
+                                   data-actual="{{milestone.actualCompletionDate}}" class="form-control"/>
                             <span class="text-danger errors"></span>
                         </div>
                     {{/hasCompletionDate}}
@@ -64,8 +75,7 @@
                     {{^hasCompletionDate}}
                         <div class="form-group">
                             <label for="actual-date">Set completion date (optional)</label>
-                            <input name="actual-date" id="actual-date" type="text"
-                                   class="form-control" required/>
+                            <input name="actual-date" id="actual-date" type="text" class="form-control"/>
                             <span class="text-danger errors"></span>
                         </div>
                     {{/hasCompletionDate}}
@@ -75,6 +85,27 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<!-- Delete milestone modal -->
+<div class="modal" id="delete-milestone-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Milestone</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you wish to delete Milestone, '{{milestone.title}}?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Confirm</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
         </div>
     </div>
 </div>

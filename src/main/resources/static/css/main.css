@@ -19,3 +19,7 @@ header {
     line-height: 15px;
     padding-top: 8px;
 }
+
+.list-group-item {
+    padding: 22px;
+}

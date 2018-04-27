@@ -6,7 +6,8 @@ $(document).ready(function() {
    $("#intended-date").datepicker(datePickerConfig);
    $("#actual-date").datepicker(datePickerConfig);
 
-   $("#edit-title-modal").on("show.bs.modal", function(e) {
+   /* Sets defaults on the edit Milestone modal */
+   $("#edit-milestone-modal").on("show.bs.modal", function(e) {
        $("#title").val($("#title").data("title"))
        $("#description").val($("#description").data("description"))
        $("#intended-date").val($("#intended-date").data("intended"))
