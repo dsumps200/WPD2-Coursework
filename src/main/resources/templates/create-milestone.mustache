@@ -4,20 +4,23 @@
     <h4 class="font-weight-bold text-success">Create a milestone</h4>
     <hr/>
 
-    <form method="POST" action="/milestones/create">
+    <form method="POST" action="/milestones/create" id="create-milestone-form">
         <div class="form-group">
             <label for="title">Title</label>
             <input name="title" id="title" type="text" class="form-control" required/>
+            <span class="text-danger errors mt-2"></span>
         </div>
 
         <div class="form-group">
             <label for="description">Description</label>
             <textarea name="description" id="description" type="text" class="form-control" required></textarea>
+            <span class="text-danger errors mt-2"></span>
         </div>
 
         <div class="form-group">
             <label for="intended-date">Intended due date</label>
             <input name="intended-date" id="intended-date" type="text" class="form-control" required/>
+            <span class="text-danger errors"></span>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
