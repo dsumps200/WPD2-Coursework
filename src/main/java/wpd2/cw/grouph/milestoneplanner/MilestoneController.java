@@ -41,7 +41,7 @@ public class MilestoneController {
         List<Milestone> milestones = this.milestoneService.getAllMilestones();
 
         /* Convert dates to human-readable */
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 //        milestones.forEach(milestone -> milestone.setIntendedDueDate(convertToDateViaSqlTimestamp()));
 
         model.addAttribute("milestones", milestones);
@@ -58,21 +58,21 @@ public class MilestoneController {
     }
 
     @PostMapping("/create")
-    public ModelAndView create(HttpServletResponse response,
+    public String create(HttpServletResponse response,
                          @RequestParam("title") String title,
                          @RequestParam("description") String description,
                          @RequestParam("intended-date") String intendedDueDate) {
         // Convert intendedDueDate to Date object
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime intended;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate intended;
         try {
-            intended = LocalDateTime.parse(intendedDueDate, formatter);
+            intended = LocalDate.parse(intendedDueDate, formatter);
         } catch(Exception e) {
-            return new ModelAndView("/milestones/create");
+            return "redirect:/milestones/create";
         }
 
         milestoneRepository.save(new Milestone(title, description, intended));
-        return new ModelAndView("redirect:/milestones");
+        return "redirect:/milestones";
     }
 
     @GetMapping("/{id}")
@@ -86,11 +86,5 @@ public class MilestoneController {
         }
 
         return "redirect:/milestones";
-    }
-
-
-    /* Helpers */
-    public Date convertToDateViaSqlTimestamp(LocalDateTime dateToConvert) {
-        return java.sql.Timestamp.valueOf(dateToConvert);
     }
 }

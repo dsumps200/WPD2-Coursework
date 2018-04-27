@@ -2,6 +2,7 @@ package wpd2.cw.grouph.milestoneplanner.models;
 
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,14 +21,14 @@ public class Milestone {
     private String description;
 
     @Column(name="due_date")
-    private LocalDateTime intendedDueDate;
+    private LocalDate intendedDueDate;
 
     @Column(name="completion_date")
-    private LocalDateTime actualCompletionDate;
+    private LocalDate actualCompletionDate;
 
     public Milestone() { super(); }
 
-    public Milestone(String title, String description, LocalDateTime dueDate) {
+    public Milestone(String title, String description, LocalDate dueDate) {
         this.title = title;
         this.description = description;
         this.intendedDueDate = dueDate;
@@ -49,19 +50,19 @@ public class Milestone {
         this.description = description;
     }
 
-    public LocalDateTime getIntendedDueDate() {
+    public LocalDate getIntendedDueDate() {
         return intendedDueDate;
     }
 
-    public void setIntendedDueDate(LocalDateTime intendedDueDate) {
+    public void setIntendedDueDate(LocalDate intendedDueDate) {
         this.intendedDueDate = intendedDueDate;
     }
 
-    public LocalDateTime getActualCompletionDate() {
+    public LocalDate getActualCompletionDate() {
         return actualCompletionDate;
     }
 
-    public void setActualCompletionDate(LocalDateTime actualCompletionDate) {
+    public void setActualCompletionDate(LocalDate actualCompletionDate) {
         this.actualCompletionDate = actualCompletionDate;
     }
 }
