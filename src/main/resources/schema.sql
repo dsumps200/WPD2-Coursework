@@ -5,11 +5,3 @@ CREATE TABLE MILESTONE (
   due_date DATE NOT NULL,
   completion_date DATE,
 );
-
-CREATE TABLE USER (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(32) NOT NULL UNIQUE,
-  password VARCHAR(256) NOT NULL,
-  firstname VARCHAR(32) NOT NULL,
-  surname VARCHAR(32) NOT NULL
-)
