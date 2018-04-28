@@ -4,8 +4,8 @@ $(document).ready(function() {
         // Validate each field in the form - min/max length, format (for dates), etc
         var title = $("#title");
         var description = $("#description");
-        var intendedDueDate = $("#intended-date");
-        var actualDueDate = $("#actual-date");
+        // var intendedDueDate = $("#intended-date");
+        // var actualDueDate = $("#actual-date");
 
         /* Milestone title validation */
         if (title.val().length < 4 || title.val().length > 64) {
@@ -28,7 +28,7 @@ $(document).ready(function() {
         // Clear the title error when user types
         title.on("keydown", function() {
             title.next().empty()
-        })
+        });
 
         // Clear the description error when user types
         description.on("keydown", function() {
@@ -41,7 +41,7 @@ $(document).ready(function() {
         // Clear the actualDueDate error when user types
         // TODO: clear actualDueDate error on selection
 
-    })
+    });
 
     /* Register form validators */
     $("#register-form").on("submit", function(e) {
@@ -74,17 +74,14 @@ $(document).ready(function() {
         }
 
         /* Register password validation */
-        if (password.val().length < 8) {
-            e.preventDefault(); // prevent form submission if this 'if' condition is true
-            password.next().text("Password must be 8 or more characters") // Add error msg to the <span> element under the form input
-        }
-        if (password.val() == username.val()) {
+        if (password.val() === username.val()) {
             e.preventDefault(); // prevent form submission if this 'if' condition is true
             password.next().text("Password must not be the same as the username") // Add error msg to the <span> element under the form input
         }
-        if (password.val() == "password") {
+        var passwordPattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+        if(!passwordPattern.test(password.val())) {
             e.preventDefault(); // prevent form submission if this 'if' condition is true
-            password.next().text("Password must not be 'password'!") // Add error msg to the <span> element under the form input
+            password.next().text("Password must contain at least 8 characters, and a combination of uppercase, lowercase, and numbers") // Add error msg to the <span> element under the form input
         }
 
         /* Register password_confirm validation */
@@ -93,33 +90,33 @@ $(document).ready(function() {
             password_confirm.next().text("Passwords do not match") // Add error msg to the <span> element under the form input
         }
 
-        // TODO: add validation to ensure first & last name contain only text
-        // TODO: add validation to ensure password contains at least 1 uppercase, 1 lowercase, 1 number
+        // TODO: add validation to allow firstname/surname to contain certain foreign characters
+        // TODO: add validation to ensure username is not already taken?
 
         // Clear the firstname error when user types
         firstname.on("keydown", function() {
             firstname.next().empty()
-        })
+        });
 
         // Clear the surname error when user types
         surname.on("keydown", function() {
             surname.next().empty()
-        })
+        });
 
         // Clear the username error when user types
         username.on("keydown", function() {
             username.next().empty()
-        })
+        });
 
         // Clear the password error when user types
         password.on("keydown", function() {
             password.next().empty()
-        })
+        });
 
         // Clear the password_confirm error when user types
         password_confirm.on("keydown", function() {
             password_confirm.next().empty()
-        })
+        });
         password.on("keydown", function() {
             password_confirm.next().empty()
         })
