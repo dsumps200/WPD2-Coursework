@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/css/jquery-ui.structure.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/jquery-ui.theme.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="d-flex flex-column">
 
@@ -44,4 +45,15 @@
                 <a href="/register" class="px-2">Register</a>
             {{/loggedin}}
         </div>
+
+        <div class="dropdown" style="float:right;">
+            <button class="dropbtn"><i class="fa fa-bars"></i> Menu</button>
+            <div class="dropdown-content">
+                <a href="/"><i class="fa fa-home"></i> Home</a>
+                <a href="/milestones">View Milestones</a>
+                <a href="/milestones/create">Create Milestone</a>
+
+            </div>
+        </div>
+
     </header>

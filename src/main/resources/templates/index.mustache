@@ -1,14 +1,19 @@
 {{>header}}
 
-<div class="container col-8 offset-2">
-    <h4 class="text-success font-weight-bold">Welcome to the Milestone Planner Application</h4>
+<div class="containerBody col-8 offset-2">
+    <h3 class="text-success font-weight-bold">Welcome to the Milestone Planner Application</h3>
+      <h5 class="title2">Login/Signup to save your milestones & unlock all features!</h5>
     <hr/>
 
     {{#loggedin}}
         <p class="text-success">Welcome, {{user.username}}!</p>
     {{/loggedin}}
+
+    <div id="rightText">
+   <h5> <u>Check these freebie's out below!</u><h5>
+
     <ul>
-        <li>
+        <i><li>
             <a href="/milestones">View milestones</a>
         </li>
         <li>
@@ -16,8 +21,21 @@
         </li>
         <li>
             <a href="/login">Login</a> or <a href="/register">register</a>
-        </li>
+        </li></i>
     </ul>
 </div>
+
+        <ul>
+            <h5><u>Account Features</u></h5>
+
+            <i> <li>Create and Save all your milestones </li>
+                <li>Edit Milestones on the go from any device with </br> chrome browser</li>
+                <li>Share Milestones with friends</li>
+                <li>Unlock all utilities</li></i>
+        </ul>
+
+</div>
+
+<img src="../assets/logo.jpg" alt="slideshow">
 
 {{>footer}}
