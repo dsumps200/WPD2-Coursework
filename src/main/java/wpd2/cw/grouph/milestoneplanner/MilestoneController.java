@@ -1,15 +1,20 @@
 package wpd2.cw.grouph.milestoneplanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import wpd2.cw.grouph.milestoneplanner.models.Milestone;
+import wpd2.cw.grouph.milestoneplanner.models.User;
 import wpd2.cw.grouph.milestoneplanner.repository.MilestoneRepository;
+import wpd2.cw.grouph.milestoneplanner.repository.UserRepository;
 import wpd2.cw.grouph.milestoneplanner.services.MilestoneService;
+import wpd2.cw.grouph.milestoneplanner.services.UserService;
 
 import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -27,6 +32,9 @@ public class MilestoneController {
 
     @Autowired
     private MilestoneService milestoneService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     public MilestoneController(MilestoneService ms) {
@@ -60,7 +68,13 @@ public class MilestoneController {
                          @RequestParam("title") String title,
                          @RequestParam("description") String description,
                          @RequestParam("intended-date") String intendedDueDate,
-                         @RequestParam("actual-date") String actualDate) {
+                         @RequestParam("actual-date") String actualDate,
+                         Principal user) {
+
+        // Retrieve the user
+        String name = user.getName();
+        User currentUser = userRepository.findByUsername(name);
+
         // Convert intendedDueDate to Date object
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate intended = LocalDate.parse(intendedDueDate, formatter);
@@ -68,9 +82,9 @@ public class MilestoneController {
 
         if (!actualDate.equals("")) {
             actual = LocalDate.parse(actualDate, formatter);
-            milestoneRepository.save(new Milestone(title, description, intended, actual));
+            milestoneRepository.save(new Milestone(title, description, intended, actual, currentUser));
         } else {
-            milestoneRepository.save(new Milestone(title, description, intended));
+            milestoneRepository.save(new Milestone(title, description, intended, currentUser));
         }
 
         return "redirect:/milestones";
@@ -101,7 +115,8 @@ public class MilestoneController {
                                  @RequestParam("title") String title,
                                  @RequestParam("description") String description,
                                  @RequestParam("intended-date") String intendedDueDate,
-                                 @RequestParam("actual-date") String actualCompletionDate) {
+                                 @RequestParam("actual-date") String actualCompletionDate,
+                                 Principal user) {
         Optional<Milestone> milestone = milestoneRepository.findById(id);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

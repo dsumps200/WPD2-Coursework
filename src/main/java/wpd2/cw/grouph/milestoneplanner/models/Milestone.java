@@ -33,16 +33,18 @@ public class Milestone {
 
     public Milestone() { super(); }
 
-    public Milestone(String title, String description, LocalDate dueDate) {
+    public Milestone(String title, String description, LocalDate dueDate, User user) {
         this.title = title;
         this.description = description;
         this.intendedDueDate = dueDate;
+        this.user = user;
     }
-    public Milestone(String title, String description, LocalDate dueDate, LocalDate actualDate) {
+    public Milestone(String title, String description, LocalDate dueDate, LocalDate actualDate, User user) {
         this.title = title;
         this.description = description;
         this.intendedDueDate = dueDate;
         this.actualCompletionDate = actualDate;
+        this.user = user;
     }
 
     public String getTitle() {
