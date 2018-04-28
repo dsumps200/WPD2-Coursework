@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import wpd2.cw.grouph.milestoneplanner.models.Milestone;
 import wpd2.cw.grouph.milestoneplanner.models.User;
 import wpd2.cw.grouph.milestoneplanner.repository.MilestoneRepository;
@@ -43,14 +44,12 @@ public class MilestoneController {
     }
 
     @GetMapping
-    public String getAllMilestones(Model model) {
-        List<Milestone> milestones = this.milestoneService.getAllMilestones();
-
-        /* Convert dates to human-readable */
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//        milestones.forEach(milestone -> milestone.setIntendedDueDate(convertToDateViaSqlTimestamp()));
-
+    public String getAllMilestones(Model model, Principal user) {
+        String name = user.getName();
+        User currentUser = userRepository.findByUsername(name);
+        List<Milestone> milestones = this.milestoneService.getAllMilestonesByUser(currentUser);
         model.addAttribute("milestones", milestones);
+        model.addAttribute("user", currentUser);
         return "milestones";
     }
 
@@ -116,7 +115,8 @@ public class MilestoneController {
                                  @RequestParam("description") String description,
                                  @RequestParam("intended-date") String intendedDueDate,
                                  @RequestParam("actual-date") String actualCompletionDate,
-                                 Principal user) {
+                                 Principal user,
+                                 RedirectAttributes redirectAttrs) {
         Optional<Milestone> milestone = milestoneRepository.findById(id);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -139,6 +139,8 @@ public class MilestoneController {
 
             milestoneRepository.save(m);
         }
+        redirectAttrs.addFlashAttribute("msg", "Milestone edited successfully.");
+        redirectAttrs.addFlashAttribute("redir", true);
         return "redirect:/milestones/{id}";
     }
 

@@ -12,6 +12,7 @@ import wpd2.cw.grouph.milestoneplanner.services.MilestoneService;
 
 import java.time.LocalDate;
 
+/* This class seeds the application with some data on startup */
 @Component
 public class DataLoader implements ApplicationRunner {
 

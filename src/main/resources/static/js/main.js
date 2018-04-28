@@ -16,4 +16,6 @@ $(document).ready(function() {
             $("#actual-date").val($("#actual-date").data("actual"))
        }
    })
+
+    $(".alert").delay(3000).fadeOut();
 });

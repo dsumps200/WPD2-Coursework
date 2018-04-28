@@ -15,8 +15,13 @@
         </div>
         <hr/>
         <div class="body-content">
+            {{#redir}}
+                <div class="alert alert-success" role="alert">
+                    {{msg}}
+                </div>
+            {{/redir}}
             <p>This milestone was created by {{milestone.user.username}}</p>
-            <p>This milestone has the title, {{milestone.title}}</p>
+            <p>Title: {{milestone.title}}</p>
             <p>Description: {{milestone.description}}</p>
             <p>Intended due date: {{ milestone.intendedDueDate }}</p>
             {{#hasCompletionDate}}
