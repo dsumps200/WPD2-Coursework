@@ -18,6 +18,7 @@ public class User {
 
     private Set<Role> roles;
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {

@@ -26,6 +26,11 @@ public class Milestone {
     @Column(name="completion_date")
     private LocalDate actualCompletionDate;
 
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="user_id", nullable = false)
+    private User user;
+
     public Milestone() { super(); }
 
     public Milestone(String title, String description, LocalDate dueDate) {
@@ -70,5 +75,13 @@ public class Milestone {
 
     public void setActualCompletionDate(LocalDate actualCompletionDate) {
         this.actualCompletionDate = actualCompletionDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

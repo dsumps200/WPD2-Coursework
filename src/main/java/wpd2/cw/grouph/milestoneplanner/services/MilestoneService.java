@@ -23,4 +23,8 @@ public class MilestoneService {
         this.milestoneRepository.findAll().forEach(milestone -> milestones.add(milestone));
         return milestones;
     }
+
+    public void save(Milestone m) {
+        milestoneRepository.save(m);
+    }
 }
