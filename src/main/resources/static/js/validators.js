@@ -57,6 +57,11 @@ $(document).ready(function() {
             e.preventDefault(); // prevent form submission if this 'if' condition is true
             firstname.next().text("First name must be between 1 and 35 characters") // Add error msg to the <span> element under the form input
         }
+        var firstnameData = /^[a-zA-Z-]+$/;
+        if(!firstnameData.test(firstname.val())) {
+            e.preventDefault(); // prevent form submission if this 'if' condition is true
+            firstname.next().text("First name must only contain standard English alphabet") // Add error msg to the <span> element under the form input
+        }
 
         /* Register surname validation */
         if (surname.val().length < 1 || surname.val().length > 35) {
