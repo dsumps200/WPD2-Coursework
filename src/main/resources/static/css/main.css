@@ -50,13 +50,6 @@ h2.title2 {
     color: black;
 }
 
-
-
-
-
-
-
-
 .dropbtn {
     background-color: deepskyblue;
     color: black;
@@ -67,6 +60,7 @@ h2.title2 {
     margin : 0 auto;
     margin-right : 25px;
     border : 1px solid #333;
+    border-radius: 15px;
 }
 
 

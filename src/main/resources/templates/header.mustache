@@ -52,7 +52,15 @@
                 <a href="/"><i class="fa fa-home"></i> Home</a>
                 <a href="/milestones">View Milestones</a>
                 <a href="/milestones/create">Create Milestone</a>
-
+                {{^loggedin}}
+                <a href="/login">Login</a>
+                {{/loggedin}}
+                {{^loggedin}}
+                <a href="/register">Register</a>
+                {{/loggedin}}
+                 {{#loggedin}}
+                <a href="/logout">Logout</a>
+                 {{/loggedin}}
             </div>
         </div>
 
