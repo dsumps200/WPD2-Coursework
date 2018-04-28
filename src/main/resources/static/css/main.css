@@ -49,3 +49,44 @@ h2.title2 {
     float: right;
     color: black;
 }
+
+
+
+
+
+
+
+
+.dropbtn {
+    background-color: deepskyblue;
+    color: grey;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 22px;
+    margin : 0 auto;
+    border : 1px solid #333;
+}
+
+
+
+.dropdown-content {
+    background-color: lightgrey;
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding-right: 80px;
+    display: block;
+    text-align: center;
+}
+
+.dropdown-content a:hover {background-color: darkviolet}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
