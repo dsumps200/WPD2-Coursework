@@ -5,18 +5,13 @@
     <p class="lead mb-3">Please complete the form below to register:</p>
     <hr class="bg-success"/>
 
-    <form action="/register" method="POST" id="register-form">
-        <div class="form-group">
-            <label class="form-control-label">First name</label>
-            <input type="text" name="firstname" id="firstname" class="form-control" required/>
-            <span class="text-danger errors mt-2"></span>
-        </div>
+    {{#redir}}
+    <div class="alert alert-danger" role="alert">
+            {{err}}
+    </div>
+    {{/redir}}
 
-        <div class="form-group">
-            <label class="form-control-label">Surname</label>
-            <input type="text" name="surname" id="surname" class="form-control" required/>
-            <span class="text-danger errors mt-2"></span>
-        </div>
+    <form action="/register" method="POST" id="register-form">
 
         <div class="form-group">
             <label class="form-control-label">Username</label>

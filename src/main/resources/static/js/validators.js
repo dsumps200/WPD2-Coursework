@@ -46,25 +46,25 @@ $(document).ready(function() {
     /* Register form validators */
     $("#register-form").on("submit", function(e) {
         // Validate each field in the form - min/max length, matching passwords, password combination, available username, etc
-        var firstname = $("#firstname");
-        var surname = $("#surname");
+        // var firstname = $("#firstname");
+        // var surname = $("#surname");
         var username = $("#username");
         var password = $("#password");
         var password_confirm = $("#password_confirm");
 
-        /* Register firstname validation */
-        var firstnamePattern = /^[a-zA-Z-]+$/;
-        if(firstname.val().length < 1 || firstname.val().length > 35 || !firstnamePattern.test(firstname.val())) {
-            e.preventDefault(); // prevent form submission if this 'if' condition is true
-            firstname.next().text("First name must be 1-35 characters, only contain standard English alphabet, hyphens permitted") // Add error msg to the <span> element under the form input
-        }
-
-        /* Register surname validation */
-        var surnamePattern = /^[a-zA-Z'-]+$/;
-        if(surname.val().length < 1 || surname.val().length > 35 || !surnamePattern.test(surname.val())) {
-            e.preventDefault(); // prevent form submission if this 'if' condition is true
-            surname.next().text("Surname must be 1-35 characters, only contain standard English alphabet, hyphens and apostrophes") // Add error msg to the <span> element under the form input
-        }
+        // /* Register firstname validation */
+        // var firstnamePattern = /^[a-zA-Z-]+$/;
+        // if(firstname.val().length < 1 || firstname.val().length > 35 || !firstnamePattern.test(firstname.val())) {
+        //     e.preventDefault(); // prevent form submission if this 'if' condition is true
+        //     firstname.next().text("First name must be 1-35 characters, only contain standard English alphabet, hyphens permitted") // Add error msg to the <span> element under the form input
+        // }
+        //
+        // /* Register surname validation */
+        // var surnamePattern = /^[a-zA-Z'-]+$/;
+        // if(surname.val().length < 1 || surname.val().length > 35 || !surnamePattern.test(surname.val())) {
+        //     e.preventDefault(); // prevent form submission if this 'if' condition is true
+        //     surname.next().text("Surname must be 1-35 characters, only contain standard English alphabet, hyphens and apostrophes") // Add error msg to the <span> element under the form input
+        // }
 
         /* Register username validation */
         var usernamePattern = /^\w+$/;
@@ -93,15 +93,15 @@ $(document).ready(function() {
         // TODO: add validation to allow firstname/surname to contain certain foreign characters
         // TODO: add validation to ensure username is not already taken?
 
-        // Clear the firstname error when user types
-        firstname.on("keydown", function() {
-            firstname.next().empty()
-        });
-
-        // Clear the surname error when user types
-        surname.on("keydown", function() {
-            surname.next().empty()
-        });
+        // // Clear the firstname error when user types
+        // firstname.on("keydown", function() {
+        //     firstname.next().empty()
+        // });
+        //
+        // // Clear the surname error when user types
+        // surname.on("keydown", function() {
+        //     surname.next().empty()
+        // });
 
         // Clear the username error when user types
         username.on("keydown", function() {
