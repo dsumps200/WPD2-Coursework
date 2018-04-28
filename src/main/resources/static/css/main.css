@@ -2,7 +2,10 @@ body {
     min-height: 100vh;
 }
 header {
-    background: lightgray;
+    background: lightskyblue;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: rebeccapurple;
 }
 
 #brand {
@@ -22,4 +25,14 @@ header {
 
 .list-group-item {
     padding: 22px;
+}
+
+.containerBody{
+    background-color: #DCEEFF;
+    margin : 0 auto;
+    border : 1px solid #333;
+    padding : 25px;
+    width:75%;
+    border-radius: 15px;
+
 }
