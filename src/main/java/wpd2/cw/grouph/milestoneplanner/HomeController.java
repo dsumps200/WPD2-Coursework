@@ -21,7 +21,7 @@ public class HomeController {
     private UserDetailsService userService;
 
     @GetMapping
-    public String index(Principal user, Model model) {
+    public String index(Model model) {
         return "index";
     }
 }
