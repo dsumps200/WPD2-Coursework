@@ -7,26 +7,21 @@ import java.util.Set;
 @Entity
 @Table(name="USER")
 public class User {
+    private Long id;
+    private String username;
+    private String password;
+    private String passwordConfirm;
+    private Set<Role> roles;
 
     @Id
-    @Column(name="id")
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getId() {
+        return id;
+    }
 
-    @Column(name="username")
-    private String username;
-
-    @Column(name="password")
-    private String password;
-
-    @Transient
-    private String passwordConfirm;
-
-    @Column(name="firstname")
-    private String firstname;
-
-    @Column(name="surname")
-    private String surname;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -44,21 +39,22 @@ public class User {
         this.password = password;
     }
 
-    public String getFirstname() {
-        return firstname;
+    @Transient
+    public String getPasswordConfirm() {
+        return passwordConfirm;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 
-    public String getSurname() {
-        return surname;
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
-
-    public User() { super(); }
 }

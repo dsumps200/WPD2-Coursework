@@ -33,7 +33,15 @@
             </div>
         </nav>
         <div class="nav mr-2 mt-3">
-            <a href="/login" class="px-2">Login</a>
-            <a href="/register" class="px-2">Register</a>
+            {{#loggedin}}
+                <a href="/logout" class="px-2">Logout</a>
+            {{/loggedin}}
+            {{^loggedin}}
+                <a href="/login" class="px-2">Login</a>
+            {{/loggedin}}
+
+            {{^loggedin}}
+                <a href="/register" class="px-2">Register</a>
+            {{/loggedin}}
         </div>
     </header>

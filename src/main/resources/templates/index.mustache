@@ -3,6 +3,10 @@
 <div class="container col-8 offset-2">
     <h4 class="text-success font-weight-bold">Welcome to the Milestone Planner Application</h4>
     <hr/>
+
+    {{#loggedin}}
+        <p class="text-success">Welcome, {{user.username}}!</p>
+    {{/loggedin}}
     <ul>
         <li>
             <a href="/milestones">View milestones</a>
