@@ -35,11 +35,11 @@ $(document).ready(function() {
             description.next().empty()
         })
 
-        // Clear the description error when user types
+        // Clear the intendedDueDate error when user types
         // TODO: clear intendedDueDate error on selection
 
-        // Clear the description error when user types
-        // TODO: clear intendedDueDate error on selection
+        // Clear the actualDueDate error when user types
+        // TODO: clear actualDueDate error on selection
 
     })
 
