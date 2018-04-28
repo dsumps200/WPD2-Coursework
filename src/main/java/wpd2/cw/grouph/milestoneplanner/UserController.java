@@ -6,11 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import wpd2.cw.grouph.milestoneplanner.models.User;
-import wpd2.cw.grouph.milestoneplanner.services.IUserService;
-import wpd2.cw.grouph.milestoneplanner.services.SecurityService;
-import wpd2.cw.grouph.milestoneplanner.services.UserService;
-import wpd2.cw.grouph.milestoneplanner.services.UserServiceImpl;
+import wpd2.cw.grouph.milestoneplanner.services.*;
 
 import java.security.Principal;
 
@@ -38,17 +36,21 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+    public String registration(@ModelAttribute("userForm") User userForm,
+                               Model model,
+                               RedirectAttributes redirectAttrs) {
 
-        if (bindingResult.hasErrors()) {
-            return "register";
+        if (userService.findByUsername(userForm.getUsername()) != null) {
+            redirectAttrs.addFlashAttribute("err", "This username is already taken.");
+            redirectAttrs.addFlashAttribute("redir", true);
+            return "redirect:/register";
         }
 
         userService.save(userForm);
 
-        securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
+        //securityService.autologin(userForm.getUsername(), userForm.getPassword());
 
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @ModelAttribute

@@ -33,7 +33,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         /* Allow access to the root URL ("/"), but force authentication for others */
-        http.csrf().disable().authorizeRequests().antMatchers("/", "/milestones", "/milestones/**", "/register", "/css/*", "/js/*", "/img/*").permitAll()
+        http.csrf().disable().authorizeRequests()
+                .antMatchers("/", "/milestones", "/register", "/css/*", "/js/*", "/img/*").permitAll()
             .anyRequest().authenticated()
             .and()
             .formLogin()

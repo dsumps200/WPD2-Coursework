@@ -8,9 +8,14 @@ import java.util.Set;
 @Table(name="USER")
 public class User {
     private Long id;
+
+    @Column(name="username", unique = true)
     private String username;
+
     private String password;
+
     private String passwordConfirm;
+
     private Set<Role> roles;
 
     @Id
