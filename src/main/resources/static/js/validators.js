@@ -60,13 +60,18 @@ $(document).ready(function() {
         var firstnameData = /^[a-zA-Z-]+$/;
         if(!firstnameData.test(firstname.val())) {
             e.preventDefault(); // prevent form submission if this 'if' condition is true
-            firstname.next().text("First name must only contain standard English alphabet") // Add error msg to the <span> element under the form input
+            firstname.next().text("First name must only contain standard English alphabet, hyphens permitted") // Add error msg to the <span> element under the form input
         }
 
         /* Register surname validation */
         if (surname.val().length < 1 || surname.val().length > 35) {
             e.preventDefault(); // prevent form submission if this 'if' condition is true
             surname.next().text("Surname must be between 1 and 35 characters") // Add error msg to the <span> element under the form input
+        }
+        var surnameData = /^[a-zA-Z'-]+$/;
+        if(!surnameData.test(surname.val())) {
+            e.preventDefault(); // prevent form submission if this 'if' condition is true
+            surname.next().text("Surname must only contain standard English alphabet, hyphens and apostrophes permitted") // Add error msg to the <span> element under the form input
         }
 
         /* Register username validation */
