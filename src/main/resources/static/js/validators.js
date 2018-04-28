@@ -70,10 +70,24 @@ $(document).ready(function() {
             username.next().text("Username must be between 6 and 35 characters") // Add error msg to the <span> element under the form input
         }
 
+        var usernameData = /^\w+$/;
+        if(!usernameData.test(username.val())) {
+            e.preventDefault(); // prevent form submission if this 'if' condition is true
+            username.next().text("Username must only contain letters, numbers and underscores");
+        }
+
         /* Register password validation */
         if (password.val().length < 8) {
             e.preventDefault(); // prevent form submission if this 'if' condition is true
             password.next().text("Password must be 8 or more characters") // Add error msg to the <span> element under the form input
+        }
+        if (password.val() == username.val()) {
+            e.preventDefault(); // prevent form submission if this 'if' condition is true
+            password.next().text("Password must not be the same as the username") // Add error msg to the <span> element under the form input
+        }
+        if (password.val() == "password") {
+            e.preventDefault(); // prevent form submission if this 'if' condition is true
+            password.next().text("Password must not be 'password'!") // Add error msg to the <span> element under the form input
         }
 
         /* Register password_confirm validation */
@@ -83,7 +97,6 @@ $(document).ready(function() {
         }
 
         // TODO: add validation to ensure first & last name contain only text
-        // TODO: add validation to ensure username contains only text, numbers, underscore?
         // TODO: add validation to ensure password contains at least 1 uppercase, 1 lowercase, 1 number
 
         // Clear the firstname error when user types
