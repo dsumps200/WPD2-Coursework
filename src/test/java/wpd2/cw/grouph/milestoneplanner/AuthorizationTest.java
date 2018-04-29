@@ -20,7 +20,7 @@ import java.net.URL;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AuthenticationTest {
+public class AuthorizationTest {
 
     @Autowired
     private MockMvc mvc;
@@ -38,6 +38,20 @@ public class AuthenticationTest {
     @Test
     public void preventAccessToAdmin() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/admin"))
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl(this.base + "login"));
+    }
+
+    @Test
+    public void preventAccessToMilestones() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/milestones"))
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl(this.base + "login"));
+    }
+
+    @Test
+    public void preventAccessToCreateMilestone() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/milestones/create"))
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl(this.base + "login"));
     }
