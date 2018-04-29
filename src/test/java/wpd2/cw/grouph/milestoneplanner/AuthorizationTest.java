@@ -55,4 +55,22 @@ public class AuthorizationTest {
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl(this.base + "login"));
     }
+
+    @Test
+    public void allowAccessToLogin() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/login"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void allowAccessToRegister() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/register"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void allowAccessToIndex() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/"))
+                .andExpect(status().isOk());
+    }
 }
