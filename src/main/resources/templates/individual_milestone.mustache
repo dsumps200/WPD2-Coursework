@@ -33,7 +33,10 @@
                 <p>Actual due date: {{milestone.actualCompletionDate}}</p>
             {{/hasCompletionDate}}
             {{^hasCompletionDate}}
-                <p>No completion date set. Click <a href="#" data-toggle="modal" data-target="#edit-milestone-modal">here</a> to add</p>
+                <p>No completion date set.
+                    {{#editable}}
+                    Click <a href="#" data-toggle="modal" data-target="#edit-milestone-modal">here</a> to add</p>
+                    {{/editable}}
             {{/hasCompletionDate}}
 
         </div>
