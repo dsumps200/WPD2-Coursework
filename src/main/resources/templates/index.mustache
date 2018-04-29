@@ -11,7 +11,7 @@
     <hr/>
 
     <div id="rightText">
-   <h5> <u>Check these freebie's out below!</u><h5>
+   <h5> <u>Check these freebies out below!</u><h5>
 
     <ul>
         <i><li>
@@ -25,6 +25,11 @@
             <a href="/login">Login</a> or <a href="/register">register</a>
         </li>
             {{/loggedin}}
+            {{#isadmin}}
+                <li>
+                    <a href="/admin">Admin page</a>
+                </li>
+            {{/isadmin}}
         </i>
     </ul>
 </div>
@@ -32,7 +37,7 @@
             <h5><u>Account Features</u></h5>
 
             <i> <li>Create and Save all your milestones </li>
-                <li>Edit Milestones on the go from any device with </br> chrome browser</li>
+                <li>Edit Milestones on the go from any device</li>
                 <li>Share Milestones with friends</li>
                 <li>Unlock all utilities</li></i>
 

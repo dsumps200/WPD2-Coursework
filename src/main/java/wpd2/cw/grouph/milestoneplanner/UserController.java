@@ -83,6 +83,13 @@ public class UserController {
             UserDetails currentUser = userDetailsService.loadUserByUsername(name);
             model.addAttribute("user", currentUser);
             model.addAttribute("loggedin", true);
+
+            /* Is user an admin? */
+            if (currentUser.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"))) {
+                model.addAttribute("isadmin",true);
+            } else {
+                model.addAttribute("isadmin", false);
+            }
         } else {
             model.addAttribute("loggedin", false);
         }

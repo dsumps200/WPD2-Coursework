@@ -1,0 +1,23 @@
+{{>header}}
+
+<div class="containerBody col-6 offset-3">
+    <h4 class="font-weight-bold text-success">Admin page.</h4>
+    <hr/>
+
+    <p>All milestones in the system are shown below:</p>
+    <ul class="list-group">
+        {{#milestones}}
+            <li class="list-group-item list-group-item-action">
+                <a href="/milestones/{{id}}">
+                    <strong>{{title}}</strong>
+                </a>
+                : {{description}}
+                <br/>
+                Created by: <strong>{{user.username}}</strong>
+                <em class="float-right">{{intendedDueDate}}</em>
+            </li>
+        {{/milestones}}
+    </ul>
+</div>
+
+{{>footer}}
