@@ -19,12 +19,14 @@
         <li>
             <a href="/milestones/create">Create a milestone</a>
         </li>
+            {{^loggedin}}
         <li>
             <a href="/login">Login</a> or <a href="/register">register</a>
-        </li></i>
+        </li>
+            {{/loggedin}}
+        </i>
     </ul>
 </div>
-
         <ul>
             <h5><u>Account Features</u></h5>
 
@@ -32,6 +34,7 @@
                 <li>Edit Milestones on the go from any device with </br> chrome browser</li>
                 <li>Share Milestones with friends</li>
                 <li>Unlock all utilities</li></i>
+
         </ul>
 
 </div>
