@@ -9,10 +9,10 @@ This is an application that allows a user to browse, create, edit and delete mil
 To run, you need: [Java 8][2], [Maven][3] and an appropriate IDE such as Intellij.
 
 ##Get started
-To run the app, you must have Maven installed. If so, and if Maven has added to the OS's PATH variable, you can run the application with the <code>mvn</code> command in the directory with the application's pom.xml file (this should be the root directory).
+To run the app, you must have Maven installed. If so, and if Maven has added to the OS's PATH variable, you can run the application with the `mvn` command in the directory with the application's pom.xml file (this should be the root directory).
 
 Once Maven is installed and on the PATH, simply type
-    'mvn clean package exec:java'
+    `mvn clean package exec:java`
     
 The first time you do this may be time-consuming, because Maven will need to do the initial install of any dependencies that the application has. Future runs will be quicker.
 
