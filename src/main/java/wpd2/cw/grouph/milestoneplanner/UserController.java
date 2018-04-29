@@ -7,10 +7,15 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import wpd2.cw.grouph.milestoneplanner.models.Role;
 import wpd2.cw.grouph.milestoneplanner.models.User;
+import wpd2.cw.grouph.milestoneplanner.repository.RoleRepository;
 import wpd2.cw.grouph.milestoneplanner.services.*;
 
 import java.security.Principal;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 @ControllerAdvice
@@ -20,6 +25,9 @@ public class UserController {
 
     @Autowired
     private SecurityService securityService;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     private UserService userDetailsService;
@@ -46,8 +54,12 @@ public class UserController {
             return "redirect:/register";
         }
 
+        Role r = roleRepository.findByName("ROLE_USER");
+        Set<Role> role = new HashSet<>(Collections.singleton(r));
+        userForm.setRoles(role);
+
         userService.save(userForm);
-        
+
         //securityService.autologin(userForm.getUsername(), userForm.getPassword());
 
         return "redirect:/";

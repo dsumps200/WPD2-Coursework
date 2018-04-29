@@ -48,7 +48,12 @@ public class MilestoneController {
         String name = user.getName();
         User currentUser = userRepository.findByUsername(name);
         List<Milestone> milestones = this.milestoneService.getAllMilestonesByUser(currentUser);
-        model.addAttribute("milestones", milestones);
+        if (milestones.size() > 0) {
+            model.addAttribute("milestones", milestones);
+            model.addAttribute("hasMilestones", true);
+        } else {
+            model.addAttribute("hasMilestones", false);
+        }
         model.addAttribute("user", currentUser);
         return "milestones";
     }
