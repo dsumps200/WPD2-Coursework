@@ -95,11 +95,16 @@ public class MilestoneController {
     }
 
     @GetMapping("/{id}")
-    public String individual_milestone(Model model, @PathVariable Long id) {
+    public String individual_milestone(Model model, @PathVariable Long id, Principal user) {
         Optional<Milestone> milestone = milestoneRepository.findById(id);
+        User currentUser = userRepository.findByUsername(user.getName());
 
         if (milestone.isPresent()) {
             Milestone m = milestone.get();
+
+            if (m.getUser() != currentUser) {
+                return "redirect:/milestones";
+            }
             model.addAttribute("milestone", m);
             Boolean hasActualCompletion;
             if (m.getActualCompletionDate() == null) {
