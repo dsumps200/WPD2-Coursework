@@ -5,12 +5,14 @@
         <div class="d-flex justify-content-between">
             <h4 class="text-success mb-0 font-weight-bold">{{milestone.title}}</h4>
             <div class="d-flex justify-content-between">
-                <button class="btn btn-primary btn-sm mr-1" type="button" data-toggle="modal" data-target="#edit-milestone-modal">
-                    Edit milestone
-                </button>
-                <button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#delete-milestone-modal">
-                    Delete milestone
-                </button>
+                {{#editable}}
+                    <button class="btn btn-primary btn-sm mr-1" type="button" data-toggle="modal" data-target="#edit-milestone-modal">
+                        Edit milestone
+                    </button>
+                    <button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#delete-milestone-modal">
+                        Delete milestone
+                    </button>
+                {{/editable}}
             </div>
         </div>
         <hr/>
@@ -20,7 +22,10 @@
                     {{msg}}
                 </div>
             {{/redir}}
-            <p>This milestone was created by {{milestone.user.username}}</p>
+            <p>This milestone was created by {{milestone.user.username}}.
+                {{#public}}This milestone is available to any user in the system{{/public}}
+                {{^public}}This milestone is private and cannot be seen by other users{{/public}}
+            </p>
             <p>Title: {{milestone.title}}</p>
             <p>Description: {{milestone.description}}</p>
             <p>Intended due date: {{ milestone.intendedDueDate }}</p>
@@ -30,6 +35,7 @@
             {{^hasCompletionDate}}
                 <p>No completion date set. Click <a href="#" data-toggle="modal" data-target="#edit-milestone-modal">here</a> to add</p>
             {{/hasCompletionDate}}
+
         </div>
     </div>
     <p>Click <a href="/milestones">here</a> to return to the milestone list.</p>

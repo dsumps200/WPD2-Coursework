@@ -26,6 +26,9 @@ public class Milestone {
     @Column(name="completion_date")
     private LocalDate actualCompletionDate;
 
+    @Column(name="public")
+    private Boolean isPublic;
+
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id", nullable = false)
@@ -85,5 +88,13 @@ public class Milestone {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Boolean isPublic() {
+        return this.isPublic;
+    }
+
+    public void setIsPublic(Boolean bool) {
+        this.isPublic = bool;
     }
 }

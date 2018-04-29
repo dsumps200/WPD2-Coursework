@@ -1,10 +1,12 @@
 package wpd2.cw.grouph.milestoneplanner;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import wpd2.cw.grouph.milestoneplanner.models.Milestone;
@@ -54,6 +56,13 @@ public class MilestoneController {
         } else {
             model.addAttribute("hasMilestones", false);
         }
+        List<Milestone> shared = this.milestoneService.getSharedMilestones(currentUser);
+        if (shared.size() > 0) {
+            model.addAttribute("hasShared", true);
+            model.addAttribute("shared", shared);
+        } else {
+            model.addAttribute("hasShared", false);
+        }
         model.addAttribute("user", currentUser);
         return "milestones";
     }
@@ -73,7 +82,12 @@ public class MilestoneController {
                          @RequestParam("description") String description,
                          @RequestParam("intended-date") String intendedDueDate,
                          @RequestParam("actual-date") String actualDate,
+                         @RequestParam("ispublic") Optional<Boolean> makePublic,
                          Principal user) {
+
+        Boolean publicMilestone;
+        if (makePublic.isPresent()) { publicMilestone =true; }
+        else publicMilestone = false;
 
         // Retrieve the user
         String name = user.getName();
@@ -86,9 +100,13 @@ public class MilestoneController {
 
         if (!actualDate.equals("")) {
             actual = LocalDate.parse(actualDate, formatter);
-            milestoneRepository.save(new Milestone(title, description, intended, actual, currentUser));
+            Milestone m = new Milestone(title, description, intended, actual, currentUser);
+            m.setIsPublic(publicMilestone);
+            milestoneRepository.save(m);
         } else {
-            milestoneRepository.save(new Milestone(title, description, intended, currentUser));
+            Milestone m = new Milestone(title, description, intended, currentUser);
+            m.setIsPublic(publicMilestone);
+            milestoneRepository.save(m);
         }
 
         return "redirect:/milestones";
@@ -102,10 +120,20 @@ public class MilestoneController {
         if (milestone.isPresent()) {
             Milestone m = milestone.get();
 
-            if (m.getUser() != currentUser) {
+            if (m.getUser() != currentUser && !m.isPublic()) {
                 return "redirect:/milestones";
             }
+            if(m.getUser() != currentUser) {
+                model.addAttribute("editable", false);
+            } else {
+                model.addAttribute("editable", true);
+            }
             model.addAttribute("milestone", m);
+            if (m.isPublic()) {
+                model.addAttribute("public", true);
+            } else {
+                model.addAttribute("public", false);
+            }
             Boolean hasActualCompletion;
             if (m.getActualCompletionDate() == null) {
                 hasActualCompletion = false;
@@ -128,6 +156,8 @@ public class MilestoneController {
                                  Principal user,
                                  RedirectAttributes redirectAttrs) {
         Optional<Milestone> milestone = milestoneRepository.findById(id);
+        User currentUser = userRepository.findByUsername(user.getName());
+
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate intended = LocalDate.parse(intendedDueDate, formatter);
@@ -140,6 +170,9 @@ public class MilestoneController {
 
         if (milestone.isPresent()) {
             Milestone m = milestone.get();
+            if (m.getUser() != currentUser) {
+                return "redirect:/milestones/" + id;
+            }
             m.setTitle(title);
             m.setDescription(description);
             m.setIntendedDueDate(intended);
@@ -157,10 +190,15 @@ public class MilestoneController {
     /* Deletes a Milestone, and returns JSON response indicating if the delete was successful or not */
     @DeleteMapping("/{id}/delete")
     @ResponseBody
-    public Map<String, Boolean> deleteMilestone(@PathVariable Long id) {
+    public Map<String, Boolean> deleteMilestone(@PathVariable Long id, Principal user) {
         Optional<Milestone> milestone = milestoneRepository.findById(id);
+        User currentUser = userRepository.findByUsername(user.getName());
+
         if (milestone.isPresent()) {
             Milestone m = milestone.get();
+            if (m.getUser() != currentUser) {
+                return Collections.singletonMap("success", false);
+            }
             milestoneRepository.delete(m);
             return Collections.singletonMap("success", true);
         } else {

@@ -65,6 +65,7 @@ public class DataLoader implements ApplicationRunner {
         m.setDescription(desc);
         m.setIntendedDueDate(intended);
         m.setUser(creator);
+        m.setIsPublic(false); // None public.
         milestoneService.save(m);
     }
 

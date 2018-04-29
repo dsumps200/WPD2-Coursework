@@ -4,8 +4,30 @@
         <hr/>
         <p>Milestones created by {{user.username}}</p>
         {{#hasMilestones}}
+        <ul class="list-group">
+            {{#milestones}}
+                <li class="list-group-item list-group-item-action">
+                    <a href="/milestones/{{id}}">
+                        <strong>{{title}}</strong>
+                    </a>
+                    : {{description}}
+                    <em class="float-right">{{intendedDueDate}}</em>
+                </li>
+            {{/milestones}}
+        </ul>
+    {{/hasMilestones}}
+
+        <!-- If user has no milestones -->
+        {{^hasMilestones}}
+            <p>You currently have no milestones within the system. Click <a href="/milestones/create">here</a> to add one!</p>
+        {{/hasMilestones}}
+
+        <hr/>
+
+        {{#hasShared}}
+                <p class="text-success">Shared Milestones</p>
             <ul class="list-group">
-                {{#milestones}}
+                {{#shared}}
                     <li class="list-group-item list-group-item-action">
                         <a href="/milestones/{{id}}">
                             <strong>{{title}}</strong>
@@ -13,13 +35,12 @@
                         : {{description}}
                         <em class="float-right">{{intendedDueDate}}</em>
                     </li>
-                {{/milestones}}
+                {{/shared}}
             </ul>
-        {{/hasMilestones}}
+        {{/hasShared}}
 
-        <!-- If user has no milestones -->
-        {{^hasMilestones}}
-            <p>You currently have no milestones within the system. Click <a href="/milestones/create">here</a> to add one!</p>
-        {{/hasMilestones}}
+        {{^hasShared}}
+            <p class="text-success">No shared milestones.</p>
+        {{/hasShared}}
     </div>
 {{>footer}}

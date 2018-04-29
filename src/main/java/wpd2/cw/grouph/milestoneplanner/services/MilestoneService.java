@@ -32,6 +32,13 @@ public class MilestoneService {
         return milestones;
     }
 
+    public List<Milestone> getSharedMilestones(User user) {
+        List<Milestone> milestones = this.getAllMilestones();
+        milestones.removeIf(milestone -> milestone.getUser() == user);
+        milestones.removeIf(milestone -> !milestone.isPublic());
+        return milestones;
+    }
+
     public void save(Milestone m) {
         milestoneRepository.save(m);
     }
