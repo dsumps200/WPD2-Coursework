@@ -12,9 +12,11 @@ import wpd2.cw.grouph.milestoneplanner.models.User;
 import wpd2.cw.grouph.milestoneplanner.repository.RoleRepository;
 import wpd2.cw.grouph.milestoneplanner.services.*;
 
+import javax.servlet.ServletRequest;
 import java.security.Principal;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Controller
@@ -33,7 +35,16 @@ public class UserController {
     private UserService userDetailsService;
 
     @GetMapping("/login")
-    public String getLoginPage() {
+    public String getLoginPage(ServletRequest request, Model model) {
+        Map<String, String[]> paramMap = request.getParameterMap();
+
+        if (paramMap.containsKey("error"))
+        {
+            model.addAttribute("error", true);
+            model.addAttribute("msg", "Invalid username and password.");
+        } else {
+            model.addAttribute("error", false);
+        }
         return "login";
     }
 
