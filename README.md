@@ -14,7 +14,7 @@ To run the app, you must have Maven installed. If so, and if Maven has added to 
 Once Maven is installed and on the PATH, simply type
     `mvn clean package exec:java`
     
-The first time you do this may be time-consuming, because Maven will need to do the initial install of any dependencies that the application has. Future runs will be quicker.
+The first time you do this may be time-consuming, because Maven will need to do the initial install of any dependencies that the application has. Future runs will be quicker. If any errors occur, it is recommended to run the project using an IDE such as IntelliJ.
 
 If successful, open a web browser and navigate to `http://localhost:8000` to see the homepage.
 
