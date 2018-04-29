@@ -18,6 +18,8 @@ The first time you do this may be time-consuming, because Maven will need to do 
 
 If successful, open a web browser and navigate to `http://localhost:8000` to see the homepage.
 
+To run the application's test suite, run the following command from the project root:
+`mvn test`
 
 [2]:http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 [3]:https://maven.apache.org/download.cgi
