@@ -2,10 +2,11 @@ body {
     min-height: 100vh;
 }
 header {
-    background: lightskyblue;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    color: rebeccapurple;
+    background: deepskyblue;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid #333;
 }
 
 #brand {
@@ -31,7 +32,7 @@ header {
     background-color: #dcf0ff;
     margin : 0 auto;
     border : 1px solid #333;
-    padding : 25px;
+    padding : 15px;
     width:75%;
     border-radius: 15px;
 
@@ -51,14 +52,14 @@ h2.title2 {
 }
 
 .dropbtn {
-    background-color: deepskyblue;
-    color: black;
+    background-color: #28a745;
+    color: white;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
-    padding: 15px;
+    padding: 20px;
     margin : 0 auto;
-    margin-right : 25px;
+    margin-right : 50px;
     border : 1px solid #333;
     border-radius: 15px;
 }
@@ -66,22 +67,40 @@ h2.title2 {
 
 
 .dropdown-content {
-    background-color: lightgrey;
+    background-color: limegreen;
     display: none;
     position: absolute;
     min-width: 160px;
-
+    border : 1px solid #333;
+    border-radius: 15px;
+   
+    z-index: 1;
 }
 
 .dropdown-content a {
     color: black;
-    padding-right: 80px;
+    padding-right: px;
     display: block;
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
-.dropdown-content a:hover {background-color: darkviolet}
+.dropdown-content a:hover {
+    background-color: darkblue;
+    color: white;
+
+}
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+#companyName{
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+
 }
